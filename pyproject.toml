@@ -1,0 +1,40 @@
+[project]
+name = "fhir-api"
+version = "0.1.0"
+description = "FHIR API Sample Project"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.115.5",
+    "fhir.resources>=7.1.0",
+    "ruff>=0.8.0",
+    "uvicorn>=0.32.1",
+    "pydantic-settings>=2.6.1",
+    "faststream[rabbit]>=0.5.33",
+    "pytest>=8.3.4",
+    "pytest-xdist>=3.6.1",
+    "pytest-coverage>=0.0",
+    "pytest-rerunfailures>=15.0",
+    "httpx>=0.28.0",
+    "pytest-asyncio>=0.24.0",
+]
+
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["RUF", "I", "PL", "F", "COM", "UP", "FAST", "T10", "T20", "DTZ", "SIM", "TID", "PTH", "ERA", "TRY"]
+ignore = ["COM812", ]
+
+
+[tool.pytest.ini_options]
+addopts = "-n auto --reruns 1 --cov --durations=10 --no-cov-on-fail --maxfail=5"
+asyncio_mode="auto"
+asyncio_default_fixture_loop_scope="function"
+python_files = ["test_*.py"]
+
+
+[tool.coverage.run]
+branch = true
